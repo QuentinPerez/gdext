@@ -40,7 +40,7 @@ pub struct GodotVersion {
 #[cfg(test)]
 mod godot_version;
 
-#[cfg(feature = "api-custom")]
+// #[cfg(feature = "api-custom")]
 #[path = ""]
 mod depend_on_custom {
     use super::*;
@@ -50,7 +50,8 @@ mod depend_on_custom {
     pub(crate) mod header_gen;
 
     pub fn load_gdextension_json(watch: &mut StopWatch) -> String {
-        godot_exe::load_gdextension_json(watch)
+        let content = include_str!("extension_api.json");
+        content.to_owned()
     }
 
     pub fn write_gdextension_headers(h_path: &Path, rs_path: &Path, watch: &mut StopWatch) {
@@ -63,7 +64,14 @@ mod depend_on_custom {
     }
 
     pub(crate) fn get_godot_version() -> GodotVersion {
-        godot_exe::read_godot_version(&godot_exe::locate_godot_binary())
+        GodotVersion {
+            full_string: "4.3.0".into(),
+            major: 4,
+            minor: 3,
+            patch: 0,
+            status: "stable".into(),
+            custom_rev: None,
+        }
     }
 }
 

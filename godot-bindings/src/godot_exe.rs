@@ -61,16 +61,26 @@ pub fn write_gdextension_headers(
         is_engine_4_0 = None;
     } else {
         // No external C header file: Godot binary is present, we use it to dump C header
-        let godot_bin = locate_godot_binary();
-        rerun_on_changed(&godot_bin);
-        watch.record("locate_godot");
+        // let godot_bin = locate_godot_binary();
+        // rerun_on_changed(&godot_bin);
+        // watch.record("locate_godot");
 
         // Regenerate API JSON if first time or Godot version is different
-        let version = read_godot_version(&godot_bin);
+        let version = GodotVersion {
+            full_string: "4.3.0".into(),
+            major: 4,
+            minor: 3,
+            patch: 0,
+            status: "stable".into(),
+            custom_rev: None,
+        };
+
         is_engine_4_0 = Some(version.major == 4 && version.minor == 0);
 
         // if !c_header_path.exists() || has_version_changed(&version) {
-        dump_header_file(&godot_bin, inout_h_path);
+        // dump_header_file(&godot_bin, inout_h_path);
+        let content = include_str!("gdextension_interface.h");
+        std::fs::write(inout_h_path, content);
         // update_version_file(&version);
         watch.record("dump_header_h");
         // }

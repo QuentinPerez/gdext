@@ -81,26 +81,26 @@ pub use prebuilt_4_2_2 as prebuilt;
 //  [line] \tfeature = "api-$kebabVersion",
 //  [pre] #[cfg(not(any(
 //  [post] \tfeature = "api-custom",\n)))]
-#[cfg(not(any(
-    feature = "api-4-0",
-    feature = "api-4-0-1",
-    feature = "api-4-0-2",
-    feature = "api-4-0-3",
-    feature = "api-4-0-4",
-    feature = "api-4-1",
-    feature = "api-4-1-1",
-    feature = "api-4-1-2",
-    feature = "api-4-1-3",
-    feature = "api-4-1-4",
-    feature = "api-4-2",
-    feature = "api-4-2-1",
-    feature = "api-4-2-2",
-    feature = "api-custom",
-)))]
+// #[cfg(not(any(
+//     feature = "api-4-0",
+//     feature = "api-4-0-1",
+//     feature = "api-4-0-2",
+//     feature = "api-4-0-3",
+//     feature = "api-4-0-4",
+//     feature = "api-4-1",
+//     feature = "api-4-1-1",
+//     feature = "api-4-1-2",
+//     feature = "api-4-1-3",
+//     feature = "api-4-1-4",
+//     feature = "api-4-2",
+//     feature = "api-4-2-1",
+//     feature = "api-4-2-2",
+//     feature = "api-custom",
+// )))]
 // ]]
 
 // [version-sync] [[
 //  [include] current.minor
 //  [line] pub use prebuilt_$snakeVersion as prebuilt;
-pub use prebuilt_4_2 as prebuilt;
+// pub use prebuilt_4_2 as prebuilt;
 // ]]

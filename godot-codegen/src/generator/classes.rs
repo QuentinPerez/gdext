@@ -211,6 +211,7 @@ fn make_class(class: &Class, ctx: &mut Context, view: &ApiView) -> GeneratedClas
                 #internal_methods
                 #constants
             }
+
             impl crate::obj::GodotClass for #class_name {
                 type Base = #base_ty;
 

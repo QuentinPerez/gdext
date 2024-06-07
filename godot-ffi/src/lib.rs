@@ -18,7 +18,7 @@
     deref_nullptr,
     clippy::redundant_static_lifetimes
 )]
-pub(crate) mod gen {
+pub mod r#gen {
     include!(concat!(env!("OUT_DIR"), "/mod.rs"));
 }
 
@@ -49,19 +49,19 @@ pub use crate::godot_ffi::{
 };
 
 // Method tables
-pub use gen::table_builtins::*;
-pub use gen::table_builtins_lifecycle::*;
-pub use gen::table_editor_classes::*;
-pub use gen::table_scene_classes::*;
-pub use gen::table_servers_classes::*;
-pub use gen::table_utilities::*;
+pub use r#gen::table_builtins::*;
+pub use r#gen::table_builtins_lifecycle::*;
+pub use r#gen::table_editor_classes::*;
+pub use r#gen::table_scene_classes::*;
+pub use r#gen::table_servers_classes::*;
+pub use r#gen::table_utilities::*;
 
 // Other
 pub use extras::*;
-pub use gen::central::*;
-pub use gen::gdextension_interface::*;
-pub use gen::interface::*;
 pub use global::*;
+pub use r#gen::central::*;
+pub use r#gen::gdextension_interface::*;
+pub use r#gen::interface::*;
 pub use string_cache::StringCache;
 pub use toolbox::*;
 

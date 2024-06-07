@@ -59,7 +59,7 @@ fn is_type_excluded(ty: &str, ctx: &mut Context) -> bool {
 }
 
 #[cfg(feature = "codegen-full")]
-fn is_type_excluded(_ty: &str, _ctx: &mut Context) -> bool {
+fn is_type_excluded(ty: &str, _ctx: &mut Context) -> bool {
     false
 }
 

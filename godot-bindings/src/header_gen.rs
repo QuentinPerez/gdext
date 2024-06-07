@@ -61,14 +61,14 @@ fn configure_platform_specific(builder: bindgen::Builder) -> bindgen::Builder {
     let target_vendor = env::var("CARGO_CFG_TARGET_VENDOR").unwrap();
     if target_vendor == "apple" {
         eprintln!("Build selected for macOS.");
-        let path = env::var("LLVM_PATH").expect("env var 'LLVM_PATH' not set");
+        // let path = env::var("LLVM_PATH").expect("env var 'LLVM_PATH' not set");
 
         builder
             .clang_arg("-I")
             // .clang_arg(format!("{path}/include"))
             .clang_arg(apple_include_path().expect("apple include path"))
-            .clang_arg("-L")
-            .clang_arg(format!("{path}/lib"))
+            // .clang_arg("-L")
+            // .clang_arg(format!("{path}/lib"))
             .clang_arg("-Wl,-flat_namespace,-undefined,dynamic_lookup")
     } else {
         eprintln!("Build selected for Linux/Windows.");
