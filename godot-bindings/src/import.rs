@@ -34,44 +34,44 @@ pub const ALL_VERSIONS: &[(u8, u8, u8)] = &[
 
 // [version-sync] [[
 //  [line] #[cfg(feature = "api-$kebabVersion")]\npub use prebuilt_$snakeVersion as prebuilt;\n
-#[cfg(feature = "api-4-0")]
-pub use prebuilt_4_0 as prebuilt;
+// #[cfg(feature = "api-4-0")]
+// pub use prebuilt_4_0 as prebuilt;
 
-#[cfg(feature = "api-4-0-1")]
-pub use prebuilt_4_0_1 as prebuilt;
+// #[cfg(feature = "api-4-0-1")]
+// pub use prebuilt_4_0_1 as prebuilt;
 
-#[cfg(feature = "api-4-0-2")]
-pub use prebuilt_4_0_2 as prebuilt;
+// #[cfg(feature = "api-4-0-2")]
+// pub use prebuilt_4_0_2 as prebuilt;
 
-#[cfg(feature = "api-4-0-3")]
-pub use prebuilt_4_0_3 as prebuilt;
+// #[cfg(feature = "api-4-0-3")]
+// pub use prebuilt_4_0_3 as prebuilt;
 
-#[cfg(feature = "api-4-0-4")]
-pub use prebuilt_4_0_4 as prebuilt;
+// #[cfg(feature = "api-4-0-4")]
+// pub use prebuilt_4_0_4 as prebuilt;
 
-#[cfg(feature = "api-4-1")]
-pub use prebuilt_4_1 as prebuilt;
+// #[cfg(feature = "api-4-1")]
+// pub use prebuilt_4_1 as prebuilt;
 
-#[cfg(feature = "api-4-1-1")]
-pub use prebuilt_4_1_1 as prebuilt;
+// #[cfg(feature = "api-4-1-1")]
+// pub use prebuilt_4_1_1 as prebuilt;
 
-#[cfg(feature = "api-4-1-2")]
-pub use prebuilt_4_1_2 as prebuilt;
+// #[cfg(feature = "api-4-1-2")]
+// pub use prebuilt_4_1_2 as prebuilt;
 
-#[cfg(feature = "api-4-1-3")]
-pub use prebuilt_4_1_3 as prebuilt;
+// #[cfg(feature = "api-4-1-3")]
+// pub use prebuilt_4_1_3 as prebuilt;
 
-#[cfg(feature = "api-4-1-4")]
-pub use prebuilt_4_1_4 as prebuilt;
+// #[cfg(feature = "api-4-1-4")]
+// pub use prebuilt_4_1_4 as prebuilt;
 
-#[cfg(feature = "api-4-2")]
-pub use prebuilt_4_2 as prebuilt;
+// #[cfg(feature = "api-4-2")]
+// pub use prebuilt_4_2 as prebuilt;
 
-#[cfg(feature = "api-4-2-1")]
-pub use prebuilt_4_2_1 as prebuilt;
+// #[cfg(feature = "api-4-2-1")]
+// pub use prebuilt_4_2_1 as prebuilt;
 
-#[cfg(feature = "api-4-2-2")]
-pub use prebuilt_4_2_2 as prebuilt;
+// #[cfg(feature = "api-4-2-2")]
+// pub use prebuilt_4_2_2 as prebuilt;
 
 // ]]
 

@@ -40,7 +40,7 @@ pub struct GodotVersion {
 #[cfg(test)]
 mod godot_version;
 
-// #[cfg(feature = "api-custom")]
+#[cfg(feature = "api-custom")]
 #[path = ""]
 mod depend_on_custom {
     use super::*;

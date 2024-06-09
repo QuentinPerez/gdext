@@ -389,7 +389,7 @@ impl<T: GodotClass> Gd<T> {
     ///
     /// This is the default for most initializations from FFI. In cases where reference counter
     /// should explicitly **not** be updated, [`Self::from_obj_sys_weak`] is available.
-    pub(crate) unsafe fn from_obj_sys(ptr: sys::GDExtensionObjectPtr) -> Self {
+    pub unsafe fn from_obj_sys(ptr: sys::GDExtensionObjectPtr) -> Self {
         Self::from_obj_sys_or_none(ptr).unwrap()
     }
 

@@ -121,6 +121,7 @@ pub(crate) fn is_utility_function_excluded(
 #[cfg(not(feature = "codegen-full"))]
 const SELECTED_CLASSES: &[&str] = &[
     "AnimatedSprite2D",
+    "GodotInstance",
     "Area2D",
     "ArrayMesh",
     "AudioStreamPlayer",

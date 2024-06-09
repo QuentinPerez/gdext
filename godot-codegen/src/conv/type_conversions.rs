@@ -103,6 +103,9 @@ pub(crate) fn to_rust_type<'a>(ty: &'a str, meta: Option<&'a String>, ctx: &mut 
         meta: meta.cloned(),
     };
 
+    if ty == "GDExtensionInitializationFunction" {
+        // panic!("");
+    }
     // Separate find + insert slightly slower, but much easier with lifetimes
     // The insert path will be hit less often and thus doesn't matter
     if let Some(rust_ty) = ctx.find_rust_type(&full_ty) {

@@ -62,7 +62,6 @@ pub unsafe fn __gdext_load_library<E: ExtensionLibrary>(
     let ctx = || "error when loading GDExtension library";
     let is_success = crate::private::handle_panic(ctx, init_code);
 
-    dbg!(&is_success);
     is_success.unwrap_or(0)
 }
 
@@ -81,23 +80,34 @@ unsafe extern "C" fn ffi_initialize_layer<E: ExtensionLibrary>(
         // Manually run initialization of lower levels.
 
         // TODO: Remove this workaround once after the upstream issue is resolved.
+        dbg!(">>>>>>>>");
         if level == InitLevel::Scene {
             if !LEVEL_SERVERS_CORE_LOADED.load(Relaxed) {
+                dbg!(">>>>>>>> 1");
+
                 try_load::<E>(InitLevel::Core);
+                dbg!(">>>>>>>> 2");
                 try_load::<E>(InitLevel::Servers);
+                dbg!(">>>>>>>> 3");
             }
         } else if level == InitLevel::Core {
+            dbg!(">>>>>>>> 4");
             // When it's normal initialization, the `Servers` level is normally initialized.
             LEVEL_SERVERS_CORE_LOADED.store(true, Relaxed);
         }
 
+        dbg!(">>>>>>>> 5");
         gdext_on_level_init(level);
+        dbg!(">>>>>>>> 6");
         E::on_level_init(level);
+        dbg!(">>>>>>>> 7");
     }
 
     // Swallow panics. TODO consider crashing if gdext init fails.
     let _ = crate::private::handle_panic(ctx, || {
+        dbg!(">>>>>>>> 0");
         try_load::<E>(level);
+        dbg!(">>>>>>>> 8");
     });
 }
 

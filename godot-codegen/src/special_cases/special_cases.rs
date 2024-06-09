@@ -35,12 +35,12 @@ pub fn is_class_method_deleted(class_name: &TyName, method: &JsonClassMethod, ct
     if codegen_special_cases::is_class_method_excluded(method, ctx){
         return true;
     }
-    
+
     match (class_name.godot_ty.as_str(), method.name.as_str()) {
         // Already covered by manual APIs.
         //| ("Object", "to_string")
         | ("Object", "get_instance_id")
-        
+
         // Removed because it is a worse version of Node::get_node_or_null(): it _seems_ like it's fallible due to Option<T> return type,
         // however Godot will emit an error message if the node is absent. In the future with non-null types, this may be re-introduced.
         // Alternatively, both get_node/get_node_or_null could become generic and use the get_node_as/try_get_node_as impl (removing those).
@@ -50,6 +50,7 @@ pub fn is_class_method_deleted(class_name: &TyName, method: &JsonClassMethod, ct
         | ("GDExtension", "open_library")
         | ("GDExtension", "initialize_library")
         | ("GDExtension", "close_library")
+        | ("GDExtensionManager", "load_function_extension")
 
         // Thread APIs
         | ("ResourceLoader", "load_threaded_get")
@@ -172,7 +173,7 @@ pub fn is_class_experimental(godot_class_name: &str) -> bool {
         | "SkeletonModificationStack2D"
         | "StreamPeerGZIP"
         | "TextureRect"
-        
+
         => true, _ => false
     }
 }
@@ -253,7 +254,7 @@ pub fn is_class_method_const(class_name: &TyName, godot_method: &JsonClassMethod
         | ("StreamPeer", "get_double")
         => Some(false),
         */
-        
+
         _ => {
             // TODO Many getters are mutably qualified (GltfAccessor::get_max, CameraAttributes::get_exposure_multiplier, ...).
             // As a default, set those to const.
@@ -340,22 +341,22 @@ pub fn is_class_level_server(class_name: &str) -> bool {
 
     match class_name {
         // TODO: These should actually be at level `Core`
-        | "Object" | "OpenXRExtensionWrapperExtension" 
+        | "Object" | "OpenXRExtensionWrapperExtension"
 
         // Shouldn't be inherited from in rust but are still servers.
-        | "AudioServer" | "CameraServer" | "NavigationServer2D" | "NavigationServer3D" | "RenderingServer" | "TranslationServer" | "XRServer" 
+        | "AudioServer" | "CameraServer" | "NavigationServer2D" | "NavigationServer3D" | "RenderingServer" | "TranslationServer" | "XRServer"
 
         // PhysicsServer2D
-        | "PhysicsDirectBodyState2D" | "PhysicsDirectBodyState2DExtension" 
-        | "PhysicsDirectSpaceState2D" | "PhysicsDirectSpaceState2DExtension" 
-        | "PhysicsServer2D" | "PhysicsServer2DExtension" 
-        | "PhysicsServer2DManager" 
+        | "PhysicsDirectBodyState2D" | "PhysicsDirectBodyState2DExtension"
+        | "PhysicsDirectSpaceState2D" | "PhysicsDirectSpaceState2DExtension"
+        | "PhysicsServer2D" | "PhysicsServer2DExtension"
+        | "PhysicsServer2DManager"
 
         // PhysicsServer3D
-        | "PhysicsDirectBodyState3D" | "PhysicsDirectBodyState3DExtension" 
-        | "PhysicsDirectSpaceState3D" | "PhysicsDirectSpaceState3DExtension" 
-        | "PhysicsServer3D" | "PhysicsServer3DExtension" 
-        | "PhysicsServer3DManager" 
+        | "PhysicsDirectBodyState3D" | "PhysicsDirectBodyState3DExtension"
+        | "PhysicsDirectSpaceState3D" | "PhysicsDirectSpaceState3DExtension"
+        | "PhysicsServer3D" | "PhysicsServer3DExtension"
+        | "PhysicsServer3DManager"
         | "PhysicsServer3DRenderingServerHandler"
 
         => true, _ => false
@@ -378,9 +379,9 @@ pub fn is_enum_private(class_name: Option<&TyName>, enum_name: &str) -> bool {
 }
 
 /// Certain enums that are extremely unlikely to get new identifiers in the future.
-/// 
+///
 /// `class_name` = None for global enums.
-/// 
+///
 /// Very conservative, only includes a few enums. Even `VariantType` was extended over time.
 /// Also does not work for any enums containing duplicate ordinals.
 #[rustfmt::skip]
